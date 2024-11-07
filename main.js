@@ -13,15 +13,14 @@ form.addEventListener("submit", (event) => {
     console.log(nombre);
 
 
-
 fetch (`https://api.jikan.moe/v4/anime?q=${nombre}`)
     .then (Response => Response.json())
     .then (data => {
         console.log(data); //confirmo que pido bien los datos al servidor
         const animes = data.data; //accedo a los datos que necesito
-        const anime = animes[0];
-        console.log(anime);
-        list.innerHTML = `
+    
+        for (const anime of animes){
+            const listanime = `
         <div>
 
             <h5>${anime.title} ${anime.title_japanese}</h5>
@@ -29,10 +28,8 @@ fetch (`https://api.jikan.moe/v4/anime?q=${nombre}`)
 
         </div> 
          `
-// pintamos en el html con los datos del api 
-
-//for? para los titulos con varias series como naturo, soa, bleach, etc ?
-        
+          list.innerHTML += listanime; //pinto y concateno todo lo relacionado con el nombre
+        }
     });
 
     })
