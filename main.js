@@ -42,7 +42,5 @@ form.addEventListener("submit", (event) => {
                 list.innerHTML += listanime;
             }
         })
-        .catch(error => {
-            console.error('Error en la solicitud:', error);
-        });
+
 });
