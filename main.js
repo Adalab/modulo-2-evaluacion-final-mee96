@@ -74,7 +74,7 @@ form.addEventListener("submit", (event) => {
                 imageUrl = "https://media.istockphoto.com/id/1349233065/vector/404-error-page-not-found-sad-kawaii-bunny-and-duckling-with-err.jpg?s=612x612&w=0&k=20&c=HxgSK3akep5Jci8AL-6Ku4-T6LRvR7IZK9oYQKnvvR0=";
             } //si la url es la primera la cambio per la segona
 
-*/
+                    */
             const listanimefav = `
                     <div class="js-anime" id=${anime.mal_id}>
                         <h5>${anime.title} ${anime.title_japanese}</h5>
