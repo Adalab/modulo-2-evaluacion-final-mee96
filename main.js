@@ -14,22 +14,35 @@ form.addEventListener("submit", (event) => {
 
 
     fetch(`https://api.jikan.moe/v4/anime?q=${nombre}`)
-        .then(Response => Response.json())
+        .then(response => response.json())
         .then(data => {
-            console.log(data); //confirmo que pido bien los datos al servidor
-            const animes = data.data; //accedo a los datos que necesito
-            list.innerHTML = ""
+            console.log(data); // Confirmo que pido bien los datos al servidor
+            const animes = data.data; // Accedo a los datos que necesito
+            list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
+
+
             for (const anime of animes) {
+
+                let imageUrl = anime.images.jpg.image_url;  //es un let perqe lo cambiem
+
+                if (imageUrl === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
+
+                    imageUrl = "https://media.istockphoto.com/id/1349233065/vector/404-error-page-not-found-sad-kawaii-bunny-and-duckling-with-err.jpg?s=612x612&w=0&k=20&c=HxgSK3akep5Jci8AL-6Ku4-T6LRvR7IZK9oYQKnvvR0=";
+                } //si la url es la primera la cambio per la segona
+
+
                 const listanime = `
-        <div>
+                    <div>
+                        <h5>${anime.title} ${anime.title_japanese}</h5>
+                        <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
+                    </div> 
+                `;
 
-            <h5>${anime.title} ${anime.title_japanese}</h5>
-            <img src="${anime.images.jpg.image_url}" alt="Portada serie">
 
-        </div> 
-         `
-                list.innerHTML += listanime; //pinto y concateno todo lo relacionado con el nombre
+                list.innerHTML += listanime;
             }
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
         });
-
-})
+});
