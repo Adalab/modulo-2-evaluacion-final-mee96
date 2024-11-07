@@ -1,3 +1,9 @@
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
+
  .uls{
     display: flex;
  }
@@ -7,6 +13,24 @@
     background-color: blue;
  }
  .search{
+    
     background-color: blueviolet;
     width: 50%;
+ }
+
+ .header{
+    padding-left: 15px;
+    background-color: #6EC6CA;
+    color: #8474A1;
+    font-family: "Montserrat Alternates", sans-serif;;
+ }
+
+ .title{
+    padding-left: 15px;
+    color:#08979D;
+    font-family: "Urbanist", sans-serif;
+ }
+
+ .form{
+    padding-left: 15px;
  }
