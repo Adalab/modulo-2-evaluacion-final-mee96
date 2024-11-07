@@ -5,6 +5,8 @@ console.log("konichiwa sekai");
 const list = document.querySelector(".js-list");
 const form = document.querySelector(".anime-form");
 const nameanime = document.querySelector(".anime-name");
+let animeList = [];
+let favoritesAnimesList = []; // array buit per omplir de animes favs
 
 
 form.addEventListener("submit", (event) => {
@@ -16,8 +18,9 @@ form.addEventListener("submit", (event) => {
     fetch(`https://api.jikan.moe/v4/anime?q=${nombre}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Confirmo que pido bien los datos al servidor
-            const animes = data.data; // Accedo a los datos que necesito
+            console.log(data); // Confirmo que demano be les dades al servidor
+            const animes = data.data; // Accedeixo a les dades que necesito
+            localStorage.setItem("animeInfo", JSON.stringify(animes)); //guardo al LS
             list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
 
 
@@ -32,7 +35,7 @@ form.addEventListener("submit", (event) => {
 
 
                 const listanime = `
-                    <div>
+                    <div class="js-anime" id=${anime.mal_id}>
                         <h5>${anime.title} ${anime.title_japanese}</h5>
                         <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
                     </div> 
@@ -40,9 +43,32 @@ form.addEventListener("submit", (event) => {
 
 
                 list.innerHTML += listanime;
+
+                const allanimesDOM = document.querySelectorAll(".js-anime");
+                //posem el query selector ALL perqe cada div sera un anime i aixi escoltem tots, dins dels fetch perqe es asincrono i esta en segon pla
+                for (const animeDOM of allanimesDOM) {
+                    animeDOM.addEventListener("click", handleAddFavorite);
+                }
+
             }
         })
-        .catch(error => {
-            console.error('Error en la solicitud:', error);
-        });
+    function handleAddFavorite(event) {
+        console.log("click en un anime");
+        console.log(event.currentTarget.id);
+        const idAnimeClicked = event.currentTarget.id;
+        //const AnimeSelected = 
+    }
+
+
 });
+
+
+
+
+//Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps
+const animesLocalStorage = localStorage.getItem("animeInfo");
+console.log(animesLocalStorage);
+
+if (animesLocalStorage !== null) {
+
+}
