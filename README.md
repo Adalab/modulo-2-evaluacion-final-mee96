@@ -1,4 +1,5 @@
 # OTAKU LIST
+![Imagen otaku - konata izumi](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgcZVSzlcoyyoI6HMq3BjMnqizVTgN7E1jwA&s)
 
 ## Buscador de Anime
 
