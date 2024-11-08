@@ -24,7 +24,7 @@ form.addEventListener("submit", (event) => {
             } //si la url es la primera la cambio per la segona
 
 
-            const listanime = `
+            let listanime = `
                     <div>
                         <h5>${anime.title} ${anime.title_japanese}</h5>
                         <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
@@ -43,8 +43,36 @@ form.addEventListener("submit", (event) => {
             const animes = data.data; // Accedo a los datos que necesito
             list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
 
-            renderAnimes(animes)
+            //guardem al LS
+            localStorage.setItem("animesinfo", JSON.stringify(data));
+
+            renderAnimes(animes);
 
         })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
