@@ -77,7 +77,7 @@ form.addEventListener("submit", (event) => {
 
         //console.log(animeSelected); 
 
-
+        console.log("animelist-antespush", favoritesAnimesList);
         favoritesAnimesList.push(animeSelected); //añadeixo lanime selected que he fet a dal a la funcio a favoritesanime list que es el meu array
 
         console.log(favoritesAnimesList);
@@ -116,9 +116,9 @@ form.addEventListener("submit", (event) => {
             }
 
             //guardar al LS
-
+            console.log("favoriteanimeslist", favoritesAnimesList)
             localStorage.setItem("favanimeUser", JSON.stringify(favoritesAnimesList));
-
+            // tengo array favorites animeslist + lo guardado --->nuevo array para el setitem
         }
 
 
