@@ -32,10 +32,10 @@ form.addEventListener("submit", (event) => {
 
 
                 const listanime = `
-                    <div>
+                    <li>
                         <h5>${anime.title} ${anime.title_japanese}</h5>
                         <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
-                    </div> 
+                    </li> 
                 `;
 
 
