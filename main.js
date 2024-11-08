@@ -60,6 +60,8 @@ form.addEventListener("submit", (event) => {
         )
 
     //animes preferits: 
+
+    // utilitzan lo id agafo l'event de clickar lanime que vull a favs
     function handleAddFavorite(event) {
         //console.log("click en un anime");
         //console.log(event.currentTarget.id);
@@ -76,7 +78,7 @@ form.addEventListener("submit", (event) => {
         //console.log(animeSelected); 
 
 
-        favoritesAnimesList.push(animeSelected);
+        favoritesAnimesList.push(animeSelected); //añadeixo lanime selected que he fet a dal a la funcio a favoritesanime list que es el meu array
 
         console.log(favoritesAnimesList);
 
@@ -108,6 +110,10 @@ form.addEventListener("submit", (event) => {
                 animeDOM.addEventListener("click", handleAddFavorite);
             }
 
+            //guardar al LS
+
+            localStorage.setItem("favanimeUser", JSON.stringify(favoritesAnimesList));
+
         }
 
 
@@ -118,14 +124,20 @@ form.addEventListener("submit", (event) => {
 
 });
 
+//obtindre del LS
 
+const animefavLS = localStorage.getItem("favanimeUser");
+console.log("ls-fav", animefavLS); //retorna null si no hi ha res en LS per aixo fem servir null al if abaix, si hi ha algo guardat cuan carreges al console surt lestring y larray
 
+//si hi ha favs guardats mostrarles, si no, no  (!== --> ' no es igual a')
 
-//Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps
-/*const animesLocalStorage = localStorage.getItem("animeInfo");
-console.log(animesLocalStorage);
+if (animefavLS !== null) {
+    const animeObject = JSON.parse(animefavLS);
+    console.log(animeObject);
 
-if (animesLocalStorage !== null) {
-    //renderAnime(animes);
-
-}*/
+    listfav.innerHTML = `<div class="js-anime" id=${animeObject.mal_id}>
+                        <h5>${animeObject.title} ${animeObject.title_japanese}</h5>
+                        <img src="${animeObject.images.webp.image_url}" alt="Portada serie" width="210" height="295">
+                    </div> 
+                `;
+}
