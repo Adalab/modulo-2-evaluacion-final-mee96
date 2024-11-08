@@ -65,8 +65,42 @@ form.addEventListener("submit", (event) => {
         const animeSelected = animeList.find((anime) => {
             return anime.id === idAnimeClicked;
         })
-        favoritesAnimesList.push(animeSelected);
+
         console.log(animeSelected); // me torna undefinded i no array
+
+
+        favoritesAnimesList.push(animeSelected);
+
+        console.log(favoritesAnimesList);
+
+        //pintem los animes copian lo de dal i pasant a favoriteanimelist i añadintho al js-fav del div de preferits
+
+        for (const anime of favoritesAnimesList) {
+
+            let imageUrl = anime.images.jpg.image_url;  //es un let perqe lo cambiem
+
+            if (imageUrl === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
+
+                imageUrl = "https://media.istockphoto.com/id/1349233065/vector/404-error-page-not-found-sad-kawaii-bunny-and-duckling-with-err.jpg?s=612x612&w=0&k=20&c=HxgSK3akep5Jci8AL-6Ku4-T6LRvR7IZK9oYQKnvvR0=";
+            } //si la url es la primera la cambio per la segona
+
+
+            const listanime = `
+                    <div class="js-anime" id=${anime.mal_id}>
+                        <h5>${anime.title} ${anime.title_japanese}</h5>
+                        <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
+                    </div> 
+                `;
+
+            listfav.innerHTML += listanime;
+
+            //click per cada paleta
+            const allanimesDOM = document.querySelectorAll(".js-anime");
+            for (const animeDOM of allanimesDOM) {
+                animeDOM.addEventListener("click", handleAddFavorite);
+            }
+
+        }
 
 
 
