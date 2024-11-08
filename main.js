@@ -16,7 +16,7 @@ form.addEventListener("submit", (event) => {
     console.log(nombre);
 
 
-    function renderAnimes(animes) {
+    function renderAnime(animes) {
         for (const anime of animes) {
 
             let imageUrl = anime.images.jpg.image_url;  //es un let perqe lo cambiem
