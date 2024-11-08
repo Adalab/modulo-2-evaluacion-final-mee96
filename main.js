@@ -120,12 +120,3 @@ form.addEventListener("submit", (event) => {
 
 
 
-
-//Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps
-/*const animesLocalStorage = localStorage.getItem("animeInfo");
-console.log(animesLocalStorage);
-
-if (animesLocalStorage !== null) {
-    //renderAnime(animes);
-
-}*/
