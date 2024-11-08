@@ -52,21 +52,28 @@ form.addEventListener("submit", (event) => {
             console.log(data); // Confirmo que demano be les dades al servidor
             const animes = data.data; // Accedeixo a les dades que necesito
 
+
             renderAnime(animes);
+            animeList = animes;
 
         }
         )
 
     //animes preferits: 
     function handleAddFavorite(event) {
-        console.log("click en un anime");
-        console.log(event.currentTarget.id);
+        //console.log("click en un anime");
+        //console.log(event.currentTarget.id);
         const idAnimeClicked = event.currentTarget.id;
         const animeSelected = animeList.find((anime) => {
-            return anime.id === idAnimeClicked;
-        })
 
-        console.log(animeSelected); // me torna undefinded i no array
+            //console.log("id", anime.mal_id);
+            //console.log("clicked", idAnimeClicked);
+            return anime.mal_id === parseInt(idAnimeClicked);
+
+        })
+        //console.log("list", animeList);
+
+        //console.log(animeSelected); 
 
 
         favoritesAnimesList.push(animeSelected);
