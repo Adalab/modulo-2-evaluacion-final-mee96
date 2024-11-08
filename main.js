@@ -51,7 +51,7 @@ form.addEventListener("submit", (event) => {
         .then(data => {
             console.log(data); // Confirmo que demano be les dades al servidor
             const animes = data.data; // Accedeixo a les dades que necesito
-
+            list.innerHTML = "";
 
             renderAnime(animes);
             animeList = animes;
@@ -81,7 +81,7 @@ form.addEventListener("submit", (event) => {
         console.log(favoritesAnimesList);
 
         //pintem los animes copian lo de dal i pasant a favoriteanimelist i añadintho al js-fav del div de preferits
-
+        listfav.innerHTML = "";
         for (const anime of favoritesAnimesList) {
 
             let imageUrl = anime.images.jpg.image_url;  //es un let perqe lo cambiem
@@ -99,6 +99,7 @@ form.addEventListener("submit", (event) => {
                     </div> 
                 `;
 
+
             listfav.innerHTML += listanime;
 
             //click per cada paleta
@@ -108,6 +109,7 @@ form.addEventListener("submit", (event) => {
             }
 
         }
+
 
 
 
