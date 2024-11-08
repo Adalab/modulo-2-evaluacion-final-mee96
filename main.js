@@ -28,9 +28,11 @@ form.addEventListener("submit", (event) => {
 
 
             const listanime = `
-                    <div class="js-anime" id=${anime.mal_id}>
+                    <div class="js-anime div" id=${anime.mal_id}>
+                    <div>
                         <h5>${anime.title} ${anime.title_japanese}</h5>
                         <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
+                        </div>
                     </div> 
                 `;
 
@@ -95,9 +97,11 @@ form.addEventListener("submit", (event) => {
 
 
             const listanime = `
-                    <div class="js-anime" id=${anime.mal_id}>
+                    <div class="js-anime div" id=${anime.mal_id}>
+                    <div>
                         <h5>${anime.title} ${anime.title_japanese}</h5>
                         <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
+                        </div>
                     </div> 
                 `;
 
@@ -118,6 +122,7 @@ form.addEventListener("submit", (event) => {
             //guardar al LS
             console.log("favoriteanimeslist", favoritesAnimesList)
             localStorage.setItem("favanimeUser", JSON.stringify(favoritesAnimesList));
+
             // tengo array favorites animeslist + lo guardado --->nuevo array para el setitem
         }
 
@@ -147,9 +152,11 @@ if (animefavLS !== null) {
             imageUrl = "https://media.istockphoto.com/id/1349233065/vector/404-error-page-not-found-sad-kawaii-bunny-and-duckling-with-err.jpg?s=612x612&w=0&k=20&c=HxgSK3akep5Jci8AL-6Ku4-T6LRvR7IZK9oYQKnvvR0=";
         }
 
-        listfav.innerHTML += `<div class="js-anime" id=${animeFav.mal_id}>
+        listfav.innerHTML += `<div class="js-anime div" id=${animeFav.mal_id}>
+        <div>
                         <h5>${animeFav.title} ${animeFav.title_japanese}</h5>
                         <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
+                        </div>
                     </div> 
                 `;
     }
