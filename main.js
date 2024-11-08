@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("konichiwa sekai");
+//console.log("konichiwa sekai");
 
 const list = document.querySelector(".js-list");
 const form = document.querySelector(".anime-form");
@@ -10,7 +10,7 @@ const nameanime = document.querySelector(".anime-name");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const nombre = nameanime.value;
-    console.log(nombre);
+    //console.log(nombre);
 
 
     function renderAnimes(animes) {
@@ -36,22 +36,30 @@ form.addEventListener("submit", (event) => {
         }
     }
 
-    fetch(`https://api.jikan.moe/v4/anime?q=${nombre}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Confirmo que pido bien los datos al servidor
-            const animes = data.data; // Accedo a los datos que necesito
-            list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
-
-            //guardem al LS
-            localStorage.setItem("animesinfo", JSON.stringify(data));
-
-            renderAnimes(animes);
-
-        })
 
 
+    const animesLocalStorage = JSON.parse(localStorage.getItem("animesinfo"));
+    console.log(animesLocalStorage + "anime");
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pawso a json parse pero surt [object] no surt larray, perq??????????????????
 
+    if (animesLocalStorage !== null) {
+        renderAnimes(animesLocalStorage);
+    } else {
+        fetch(`https://api.jikan.moe/v4/anime?q=${nombre}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Confirmo que pido bien los datos al servidor
+                const animes = data.data; // Accedo a los datos que necesito
+                list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
+
+                //guardem al LS
+                localStorage.setItem("animesinfo", JSON.stringify(data));
+
+                renderAnimes(animes);
+
+            })
+        //pues ara que poso el fetch dins i tinc el LS buit surt nomes una vegada y no més
+    }
 
 
 
