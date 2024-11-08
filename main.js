@@ -60,6 +60,8 @@ form.addEventListener("submit", (event) => {
         )
 
     //animes preferits: 
+
+    // utilitzan lo id agafo l'event de clickar lanime que vull a favs
     function handleAddFavorite(event) {
         //console.log("click en un anime");
         //console.log(event.currentTarget.id);
@@ -76,7 +78,7 @@ form.addEventListener("submit", (event) => {
         //console.log(animeSelected); 
 
 
-        favoritesAnimesList.push(animeSelected);
+        favoritesAnimesList.push(animeSelected); //añadeixo lanime selected que he fet a dal a la funcio a favoritesanime list que es el meu array
 
         console.log(favoritesAnimesList);
 
@@ -108,6 +110,15 @@ form.addEventListener("submit", (event) => {
                 animeDOM.addEventListener("click", handleAddFavorite);
             }
 
+            //darle color cuando este en fabs en el css .favs
+            if (anime.mal_id === anime.mal_id) {
+
+            }
+
+            //guardar al LS
+
+            localStorage.setItem("favanimeUser", JSON.stringify(favoritesAnimesList));
+
         }
 
 
@@ -118,14 +129,28 @@ form.addEventListener("submit", (event) => {
 
 });
 
+//obtindre del LS
 
+const animefavLS = localStorage.getItem("favanimeUser");
+console.log("ls-fav", animefavLS); //retorna null si no hi ha res en LS per aixo fem servir null al if abaix, si hi ha algo guardat cuan carreges al console surt lestring y larray
 
+//si hi ha favs guardats mostrarles, si no, no  (!== --> ' no es igual a')
 
-//Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps
-/*const animesLocalStorage = localStorage.getItem("animeInfo");
-console.log(animesLocalStorage);
+if (animefavLS !== null) {
+    const animeList = JSON.parse(animefavLS);
+    console.log(animeList);
+    for (const animeFav of animeList) {//busco objetos en el array
+        let imageUrl = animeFav.images.jpg.image_url;
 
-if (animesLocalStorage !== null) {
-    //renderAnime(animes);
+        if (imageUrl === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
 
-}*/
+            imageUrl = "https://media.istockphoto.com/id/1349233065/vector/404-error-page-not-found-sad-kawaii-bunny-and-duckling-with-err.jpg?s=612x612&w=0&k=20&c=HxgSK3akep5Jci8AL-6Ku4-T6LRvR7IZK9oYQKnvvR0=";
+        }
+
+        listfav.innerHTML += `<div class="js-anime" id=${animeFav.mal_id}>
+                        <h5>${animeFav.title} ${animeFav.title_japanese}</h5>
+                        <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
+                    </div> 
+                `;
+    }
+}
