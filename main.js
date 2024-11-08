@@ -66,11 +66,6 @@ form.addEventListener("submit", (event) => {
         //pinto al HTML les preferides
 
 
-
-
-
-
-
     }
 
     //Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps

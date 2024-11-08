@@ -6,16 +6,20 @@
 
  .uls{
     display: flex;
+    color: #D6EBEE;
+    margin-top: 10PX;
  }
 
  .favourite{
     width: 50%;
-    background-color: blue;
+    background-color: #CCABD8;
+    
  }
  .search{
     
-    background-color: blueviolet;
+    background-color: #08979D;
     width: 50%;
+   
  }
 
  .header{
@@ -26,7 +30,7 @@
  }
 
  .title{
-    padding-left: 15px;
+    margin: 15PX;
     color:#08979D;
     font-family: "Urbanist", sans-serif;
  }
