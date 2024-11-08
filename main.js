@@ -1,5 +1,5 @@
-
-console.log("konichiwa sekai");
+'use strict'
+//console.log("konichiwa sekai");
 
 const list = document.querySelector(".js-list");
 const listfav = document.querySelector(".js-list-fav");
@@ -12,11 +12,13 @@ let favoritesAnimesList = []; // array buit per omplir de animes favs
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const nombre = nameanime.value;
-    console.log(nombre);
 
+    //console.log(nombre);
 
     function renderAnime(animes) {
         for (const anime of animes) {
+
+
             let imageUrl = anime.images.jpg.image_url;  //es un let perqe lo cambiem
 
             if (imageUrl === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
@@ -32,6 +34,7 @@ form.addEventListener("submit", (event) => {
                     </div> 
                 `;
 
+
             list.innerHTML += listanime;
 
             const allanimesDOM = document.querySelectorAll(".js-anime");
@@ -44,24 +47,55 @@ form.addEventListener("submit", (event) => {
 
     }
 
-    fetch(`https://api.jikan.moe/v4/anime?q=${nombre}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Confirmo que demano be les dades al servidor
-            const animes = data.data; // Accedeixo a les dades que necesito
-            localStorage.setItem("animeInfo", JSON.stringify(animes)); //guardo al LS
-            list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
 
-
-            renderAnime(animes);
-
-        }
-        )
     function handleAddFavorite(event) {
         console.log("click en un anime");
-        console.log(event.currentTarget.id);//current target perqe aixi agafo larray sancer y no nomes la part on he clickat
+        console.log(animeList + " Sakuhin kudasai");
+        console.log(event.currentTarget.id);//current target perqe aixi agafo larray sancer (lo que te el id) y no nomes la part on he clickat
         const idAnimeClicked = event.currentTarget.id;
-        //const AnimeSelected = 
+
+        //buscar lanime clickat a partir del id en find
+        const animeSelected = animeList.find((anime) => {
+            return anime.id === idAnimeClicked;
+        })
+        console.log(animeSelected + "selected")
+        //Afegir a preferides al array buit en push
+        favoritesAnimesList.push(animeSelected);
+        console.log(favoritesAnimesList + "push");
+
+        //pinto al HTML les preferides
+
+
+
+
+
+
+
+    }
+
+    //Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps
+    const animesLocalStorage = JSON.parse(localStorage.getItem("animeInfo"));
+    console.log(animesLocalStorage);
+
+    // if 'lanime esta al local storage, fesmel-- else  'si no, fesme el fetch
+
+    if (animesLocalStorage !== null) {
+        animeList = animesLocalStorage;
+        renderAnime(animesLocalStorage);
+    } else {
+        fetch(`https://api.jikan.moe/v4/anime?q=${nombre}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Confirmo que demano be les dades al servidor
+                const animes = data.data; // Accedeixo a les dades que necesito
+                localStorage.setItem("animeInfo", JSON.stringify(animes)); //guardo al LS
+
+                list.innerHTML = ""; // borro lo anterior per a que no se me sumen cada vegada
+                renderAnime(animes);
+
+            }
+            )
+
     }
 
 
@@ -70,10 +104,4 @@ form.addEventListener("submit", (event) => {
 
 
 
-//Local storage, si la usuaria ja hagues entrat anteriorment no caldria carregar el fetch i ahorrem temps
-const animesLocalStorage = localStorage.getItem("animeInfo");
-console.log(animesLocalStorage);
 
-if (animesLocalStorage !== null) {
-
-}
