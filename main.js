@@ -110,6 +110,11 @@ form.addEventListener("submit", (event) => {
                 animeDOM.addEventListener("click", handleAddFavorite);
             }
 
+            //darle color cuando este en fabs en el css .favs
+            if (anime.mal_id === anime.mal_id) {
+
+            }
+
             //guardar al LS
 
             localStorage.setItem("favanimeUser", JSON.stringify(favoritesAnimesList));
@@ -132,12 +137,20 @@ console.log("ls-fav", animefavLS); //retorna null si no hi ha res en LS per aixo
 //si hi ha favs guardats mostrarles, si no, no  (!== --> ' no es igual a')
 
 if (animefavLS !== null) {
-    const animeObject = JSON.parse(animefavLS);
-    console.log(animeObject);
+    const animeList = JSON.parse(animefavLS);
+    console.log(animeList);
+    for (const animeFav of animeList) {//busco objetos en el array
+        let imageUrl = animeFav.images.jpg.image_url;
 
-    listfav.innerHTML = `<div class="js-anime" id=${animeObject.mal_id}>
-                        <h5>${animeObject.title} ${animeObject.title_japanese}</h5>
-                        <img src="${animeObject.images.webp.image_url}" alt="Portada serie" width="210" height="295">
+        if (imageUrl === "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png") {
+
+            imageUrl = "https://media.istockphoto.com/id/1349233065/vector/404-error-page-not-found-sad-kawaii-bunny-and-duckling-with-err.jpg?s=612x612&w=0&k=20&c=HxgSK3akep5Jci8AL-6Ku4-T6LRvR7IZK9oYQKnvvR0=";
+        }
+
+        listfav.innerHTML += `<div class="js-anime" id=${animeFav.mal_id}>
+                        <h5>${animeFav.title} ${animeFav.title_japanese}</h5>
+                        <img src="${imageUrl}" alt="Portada serie" width="210" height="295">
                     </div> 
                 `;
+    }
 }
